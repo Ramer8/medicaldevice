@@ -11,7 +11,6 @@
     align-items: center;
 
     padding: .5em;
-    border-radius: 2em;
     gap: 1em;
     margin-bottom: 1em;
 }
@@ -20,7 +19,7 @@
     padding: .5rem 2rem;
     height: 2.5em;
     border-radius: 1em;
-    width: 80%;
+    width: 90%;
 
     box-shadow: 1px 1px 5px gray;
     display: block;

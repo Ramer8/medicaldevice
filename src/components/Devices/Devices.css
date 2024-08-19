@@ -1,0 +1,43 @@
+.content {
+    /* border: solid 1px gray; */
+    border-radius: 1em;
+    padding: 1.5em 2em;
+}
+
+.devices-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: .5em;
+    border-radius: 2em;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.device-input {
+    padding: .5rem 2rem;
+    height: 2.5em;
+    border-radius: 1em;
+    width: 80%;
+
+    box-shadow: 1px 1px 5px gray;
+    display: block;
+    border: none;
+    box-shadow: 1.5px 1.5px 5px 0px gray;
+
+    background: black;
+    color: whitesmoke;
+
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 800;
+    outline: white;
+}
+
+.device-list {
+    border: solid 1px gray;
+    border-radius: 2em;
+    padding: 1em;
+}

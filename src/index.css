@@ -60,8 +60,18 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
     background-color: #ffffff;
+    color: whitesmoke;
+  }
+
+  .home-design {
+    background-color: dimgrey;
+  }
+
+  .error {
+    background-color: #242424;
+    border-radius: 1em;
+    width: 100%;
   }
 
   a:hover {

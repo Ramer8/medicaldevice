@@ -10,10 +10,11 @@ const Devices = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.fda.gov/device/510k.json?search=${searchTerm}`
+          `https://api.fda.gov/device/510k.json?search=${searchTerm}
+`
         )
         setDevices(response.data.results)
-        console.log(response.data)
+        console.log(response.data.results)
       } catch (error) {
         console.error("Error fetching data:", error)
       }
@@ -47,11 +48,34 @@ const Devices = () => {
           <div key={index}>
             <h3>Generic Name: {device.openfda.device_name}</h3>
             <h2>Device Name: {device.device_name}</h2>
+            <h4>Device Class: {device.openfda.device_class}</h4>
             <p>Manufacturer: {device.applicant}</p>
             <h4>
               Medical Specialty: {device.openfda.medical_specialty_description}
             </h4>
+            <h4>Regulation number: {device.openfda.regulation_number}</h4>
             <p>510(k) Number: {device.k_number}</p>
+            <p>
+              Registration numbers: {device.openfda.registration_number.length}
+            </p>
+            <p>{device.openfda.registration_number[0]}</p>
+            <div>
+              Id device:
+              {device.openfda.registration_number.map(
+                (element, index, array) => (
+                  <div key={index + element}>{element + " index " + index}</div>
+                )
+                // if (index <= 1)
+                //   console.log(
+                //     element +
+                //       " producto " +
+                //       index +
+                //       " de " +
+                //       array.length +
+                //       " datos"
+                //   )
+              )}
+            </div>
           </div>
         ))}
       </div>

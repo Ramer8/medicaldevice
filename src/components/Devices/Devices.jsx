@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import "./Devices.css"
+import DeviceList from "../DeviceList/DeviceList"
 
 const Devices = () => {
   const [devices, setDevices] = useState([])
@@ -54,17 +55,10 @@ const Devices = () => {
             </h4>
             <h4>Regulation number: {device.openfda.regulation_number}</h4>
             <p>510(k) Number: {device.k_number}</p>
-            <p>
-              Registration numbers: {device.openfda.registration_number.length}
-            </p>
 
-            <div>
-              {"Id device/s: " +
-                device.openfda.registration_number.filter(
-                  (element, index) => index < 3
-                )}
-            </div>
-            {/* <p> {device.openfda.registration_number.length / 5} </p> */}
+            <DeviceList
+              registrationNumbers={device.openfda.registration_number}
+            />
           </div>
         ))}
       </div>

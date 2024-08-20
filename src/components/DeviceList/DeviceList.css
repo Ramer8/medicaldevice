@@ -1,0 +1,36 @@
+.deviceList-content {
+    border: solid 1px gray;
+    border-radius: 1em;
+    padding: .5em;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: whitesmoke;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 1em;
+    border: none;
+}
+
+.pagination button:hover {
+    background-color: #007bff5b;
+}
+
+.pagination button:disabled {
+    background-color: #007bff;
+    color: darkgray;
+    cursor: not-allowed;
+    border: none;
+}

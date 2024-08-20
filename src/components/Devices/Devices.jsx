@@ -21,7 +21,6 @@ const Devices = () => {
     }
     fetchData()
   }, [searchTerm])
-
   return (
     <div className="content">
       <div className="devices-title">
@@ -58,24 +57,14 @@ const Devices = () => {
             <p>
               Registration numbers: {device.openfda.registration_number.length}
             </p>
-            <p>{device.openfda.registration_number[0]}</p>
+
             <div>
-              Id device:
-              {device.openfda.registration_number.map(
-                (element, index, array) => (
-                  <div key={index + element}>{element + " index " + index}</div>
-                )
-                // if (index <= 1)
-                //   console.log(
-                //     element +
-                //       " producto " +
-                //       index +
-                //       " de " +
-                //       array.length +
-                //       " datos"
-                //   )
-              )}
+              {"Id device/s: " +
+                device.openfda.registration_number.filter(
+                  (element, index) => index < 3
+                )}
             </div>
+            {/* <p> {device.openfda.registration_number.length / 5} </p> */}
           </div>
         ))}
       </div>

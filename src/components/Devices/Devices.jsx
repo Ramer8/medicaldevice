@@ -6,7 +6,8 @@ import DeviceList from "../DeviceList/DeviceList"
 const Devices = () => {
   const [devices, setDevices] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
-
+  const [msgError, setMsgError] = useState()
+  const ERROR_MSG = 5000
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,9 +16,14 @@ const Devices = () => {
 `
         )
         setDevices(response.data.results)
-        console.log(response.data.results)
       } catch (error) {
-        console.error("Error fetching data:", error)
+        console.log("Error fetching data:", error.response.data.error.code)
+
+        setMsgError(searchTerm + " product not found")
+
+        setTimeout(() => {
+          setMsgError("")
+        }, ERROR_MSG)
       }
     }
     fetchData()
@@ -43,25 +49,30 @@ const Devices = () => {
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
         </svg>
       </div>
-      <div className="device-list">
-        {devices.map((device, index) => (
-          <div key={index}>
-            <h3>Generic Name: {device.openfda.device_name}</h3>
-            <h2>Device Name: {device.device_name}</h2>
-            <h4>Device Class: {device.openfda.device_class}</h4>
-            <p>Manufacturer: {device.applicant}</p>
-            <h4>
-              Medical Specialty: {device.openfda.medical_specialty_description}
-            </h4>
-            <h4>Regulation number: {device.openfda.regulation_number}</h4>
-            <p>510(k) Number: {device.k_number}</p>
-
-            <DeviceList
-              registrationNumbers={device.openfda.registration_number}
-            />
-          </div>
-        ))}
-      </div>
+      <div className="error">{msgError}</div>
+      {devices && (
+        <div className="device-list">
+          {devices.map((device, index) => (
+            <div key={index}>
+              <h3>Generic Name: {device.openfda.device_name}</h3>
+              <h2>Device Name: {device.device_name}</h2>
+              <h4>Device Class: {device.openfda.device_class}</h4>
+              <p>Manufacturer: {device.applicant}</p>
+              <h4>
+                Medical Specialty:{" "}
+                {device.openfda.medical_specialty_description}
+              </h4>
+              <h4>Regulation number: {device.openfda.regulation_number}</h4>
+              <p>510(k) Number: {device.k_number}</p>
+              {device.openfda.registration_number && (
+                <DeviceList
+                  registrationNumbers={device.openfda.registration_number}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
